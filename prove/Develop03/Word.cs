@@ -3,7 +3,7 @@ public class Word
     string _text;
     bool _isHidden;
 
-    Word(string text) { }
+    public Word(string text) { }
 
     public void Hide() { }
 

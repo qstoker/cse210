@@ -3,7 +3,7 @@ public class Scripture
     Reference _reference;
     List<Word> _words;
 
-    Scripture(Reference reference, string text) { }
+    public Scripture(Reference reference, string text) { }
 
     public void HideRandomWords(int numberToHide) { }
 
