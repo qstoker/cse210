@@ -1,9 +1,9 @@
 public class Reference
 {
-    string _book;
-    int _chapter;
-    int _verse;
-    int _endVerse;
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int _endVerse;
 
     public Reference(string book, int chapter, int verse)
     {
@@ -20,9 +20,9 @@ public class Reference
         _endVerse = endVerse;
     }
 
-    public string GetDisplaytext()
+    public string GetDisplayText()
     {
-        if (_endVerse != 0)
+        if (_endVerse == 0)
         {
             return $"{_book} {_chapter}:{_verse}";
         }
