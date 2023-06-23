@@ -22,7 +22,17 @@ public class Scripture
         for (int i = 0; i < numberToHide; i++)
         {
             int index = new Random().Next(0, _words.Count);
-            _words[index].Hide();
+
+            // This ensures "numberToHide" isn't wasted on already hidden words
+            // while still quitting properly if all words are hidden.
+            if (_words[index].IsHidden() && !IsCompletelyHidden())
+            {
+                i--;
+            }
+            else
+            {
+                _words[index].Hide();
+            }
         }
     }
 
@@ -49,5 +59,14 @@ public class Scripture
         }
 
         return true;
+    }
+
+    // This shows the whole scripture
+    public void ShowAllWords()
+    {
+        foreach (Word word in _words)
+        {
+            word.Show();
+        }
     }
 }
