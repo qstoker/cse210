@@ -1,5 +1,9 @@
 using System;
 
+// I exceeded requirements by ensuring the Reflecting
+// Activity's questions don't repeat until they have
+// all been used (while still randomizing the order).
+
 class Program
 {
     static void Main(string[] args)

@@ -42,7 +42,7 @@ public class ListingActivity : Activity
         DisplayEndingMessage();
     }
 
-    public string GetRandomPrompt() // was supposed to be void...
+    public string GetRandomPrompt()
     {
         int index = new Random().Next(0, _prompts.Count);
         return _prompts[index];

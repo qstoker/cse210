@@ -1,13 +1,17 @@
 public class ReflectingActivity : Activity
 {
+    Random _rand; // Exceeding Req
     List<string> _prompts;
     List<string> _questions;
+    List<string> _shuffledQuestions; // Exceeding Req
+    int _shuffledQuestionIndex; // Exceeding Req
 
     public ReflectingActivity()
     {
         _name = "Reflecting Activity";
         _description =
             "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+        _rand = new Random(); // Exceeding Req
         _prompts = new List<string>
         {
             "Think of a time when you stood up for someone else.",
@@ -27,6 +31,8 @@ public class ReflectingActivity : Activity
             "What did you learn about yourself through this experience?",
             "How can you keep this experience in mind in the future?"
         };
+        _shuffledQuestions = _questions.OrderBy(question => _rand.Next()).ToList(); // Exceeding Req
+        _shuffledQuestionIndex = 0; // Exceeding Req
     }
 
     public void Run()
@@ -45,10 +51,18 @@ public class ReflectingActivity : Activity
         while (countdown > 0)
         {
             DisplayQuestion();
-            ShowSpinner(10);
+            ShowSpinner(5);
             Console.WriteLine();
 
-            countdown -= 10;
+            if (_shuffledQuestionIndex < (_shuffledQuestions.Count() - 1)) // Exceeding Req
+            {
+                _shuffledQuestionIndex++;
+            }
+            else
+            {
+                _shuffledQuestionIndex = 0;
+            }
+            countdown -= 5;
         }
 
         DisplayEndingMessage();
@@ -58,12 +72,6 @@ public class ReflectingActivity : Activity
     {
         int index = new Random().Next(0, _prompts.Count);
         return _prompts[index];
-    }
-
-    public string GetRandomQuestion()
-    {
-        int index = new Random().Next(0, _questions.Count);
-        return _questions[index];
     }
 
     public void DisplayPrompt()
@@ -76,6 +84,13 @@ public class ReflectingActivity : Activity
 
     public void DisplayQuestion()
     {
-        Console.Write($"> {GetRandomQuestion()} ");
+        Console.Write($"> {_shuffledQuestions[_shuffledQuestionIndex]} "); // Exceeding Req
     }
 }
+
+// Now unused method:
+// public string GetRandomQuestion()
+// {
+//     int index = new Random().Next(0, _questions.Count);
+//     return _questions[index];
+// }
