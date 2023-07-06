@@ -142,6 +142,8 @@ public class GoalManager
         Console.Write("What is the filename for the goal file? ");
         string filename = Console.ReadLine();
 
+        _goals.Clear();
+
         string[] lines = System.IO.File.ReadAllLines(filename);
 
         _level = int.Parse(lines[0]);
