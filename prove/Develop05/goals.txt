@@ -1,5 +1,7 @@
-2525
-SimpleGoal:goal1,desc1,30,True
-EternalGoal:goal2,desc2,400
-ChecklistGoal:goal3,desc3,20,5,5,2000
-ChecklistGoal:goal4,desc4 is a longer one.,-5,1,4,-1000
+4
+7630
+SimpleGoal:Goal-1,description of goal number 1,500,True
+EternalGoal:Goal-2,Description num2,30
+ChecklistGoal:Goal-3,efse feasfaesfasef fesfeigsea gse,35,2,20,2000
+EternalGoal:Goal-4,desfesfasefse faesf aesfasefase,1000
+EternalGoal:Goal-5,afesafse fase fase fase faaaa,5000

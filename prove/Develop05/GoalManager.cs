@@ -2,11 +2,13 @@ public class GoalManager
 {
     List<Goal> _goals;
     int _score;
+    int _level;
 
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
+        _level = 1;
     }
 
     public void Start()
@@ -56,7 +58,7 @@ public class GoalManager
 
     public void DisplayPlayerInfo()
     {
-        Console.WriteLine($"You have {_score} points.");
+        Console.WriteLine($"You are level {_level} ({_score} points).");
     }
 
     public void CreateGoal()
@@ -124,6 +126,7 @@ public class GoalManager
 
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
+            outputFile.WriteLine(_level);
             outputFile.WriteLine(_score);
 
             foreach (var goal in _goals)
@@ -141,9 +144,10 @@ public class GoalManager
 
         string[] lines = System.IO.File.ReadAllLines(filename);
 
-        _score = int.Parse(lines[0]);
+        _level = int.Parse(lines[0]);
+        _score = int.Parse(lines[1]);
 
-        foreach (string line in lines.Skip(1))
+        foreach (string line in lines.Skip(2))
         {
             string[] mainParts = line.Split(":");
 
@@ -190,7 +194,6 @@ public class GoalManager
         {
             goalCount++;
             Console.WriteLine($"{goalCount}. {goal.GetName()}");
-            // Console.WriteLine($"{goalCount}. {nameof(goal)}");
         }
 
         Console.Write("Which goal did you accomplish? ");
@@ -202,14 +205,25 @@ public class GoalManager
         if (newPoints == 0)
         {
             Console.WriteLine("You've already completed that goal.");
-            Console.WriteLine($"You have {_score} points.");
-            ShowSpinner(5);
+            ShowSpinner(3);
         }
         else
         {
             Console.WriteLine($"Congratulations! You have earned {newPoints} points");
             Console.WriteLine($"You now have {_score} points.");
-            ShowSpinner(5);
+            ShowSpinner(3);
+
+            if (_score / (_level * 500) > _level)
+            {
+                while (_score / (_level * 500) > _level)
+                {
+                    _level++;
+                }
+
+                Console.Clear();
+                Console.WriteLine("You leveled up!");
+                ShowSpinner(5);
+            }
         }
     }
 

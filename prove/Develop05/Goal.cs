@@ -16,7 +16,7 @@ public abstract class Goal
         return _name;
     }
 
-    public abstract int RecordEvent(); // originally void...
+    public abstract int RecordEvent();
 
     public abstract bool IsComplete();
 
