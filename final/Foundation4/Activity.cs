@@ -1,25 +1,23 @@
-public class Activity
+public abstract class Activity
 {
     DateTime _date;
-    int _length;
+    protected int _minutes;
 
-    public virtual double GetDistance()
+    public Activity(int minutes)
     {
-        return 0;
+        _minutes = minutes;
+
+        _date = DateTime.Now;
     }
 
-    public virtual double GetSpeed()
-    {
-        return 0;
-    }
+    public abstract double GetDistance();
 
-    public virtual double GetPace()
-    {
-        return 0;
-    }
+    public abstract double GetSpeed();
+
+    public abstract double GetPace();
 
     public string GetSummary()
     {
-        return "";
+        return $"{_date.ToString("dd MMM yyyy")} {this.GetType().Name} ({_minutes} min) - Distance: {Math.Round(GetDistance(), 1, MidpointRounding.AwayFromZero)} km, Speed: {Math.Round(GetSpeed(), 1, MidpointRounding.AwayFromZero)} kph, Pace: {Math.Round(GetPace(), 1, MidpointRounding.AwayFromZero)} min per km";
     }
 }
