@@ -9,8 +9,8 @@ class Program
         List<Activity> activities = new List<Activity>();
 
         activities.Add(new Running(30, 4.8));
-        activities.Add(new Cycling(30, 9.6));
-        activities.Add(new Swimming(30, 100));
+        activities.Add(new Cycling(40, 12));
+        activities.Add(new Swimming(15, 30));
 
         foreach (Activity activity in activities)
         {
